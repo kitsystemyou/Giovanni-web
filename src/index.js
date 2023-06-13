@@ -2,12 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import GoogleLoginPage from './lib/GoogleLoginPage';
 import reportWebVitals from './reportWebVitals';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <App />
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="/auth" element={<GoogleLoginPage />} />
+    </Routes>
+  </BrowserRouter>
   // {/* </React.StrictMode> */}
 );
 
