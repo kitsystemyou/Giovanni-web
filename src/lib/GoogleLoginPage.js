@@ -24,7 +24,7 @@ function GoogleLoginPage(){
     <div className="">
           <div className="">
             <GoogleOAuthProvider
-                clientId={`326004420066-36o7m8rn5nh2cpikirc2pj3muvmgdk9a.apps.googleusercontent.com`}
+                clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}
                 >
              <GoogleLogin
               render={(renderProps) => (
