@@ -1,0 +1,10 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js",
+  "/auth/google": "pages/auth/google.js",
+  "/companies": "pages/companies.js",
+  "/account": "pages/account.js",
+  "/customers": "pages/customers.js"
+}
