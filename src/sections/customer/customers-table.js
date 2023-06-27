@@ -34,6 +34,7 @@ export const CustomersTable = (props) => {
 
   const selectedSome = (selected.length > 0) && (selected.length < items.length);
   const selectedAll = (items.length > 0) && (selected.length === items.length);
+  console.log("items", items)
 
   return (
     <Card>
@@ -62,20 +63,18 @@ export const CustomersTable = (props) => {
                   Email
                 </TableCell>
                 <TableCell>
-                  Location
+                  Texts
                 </TableCell>
                 <TableCell>
-                  Phone
-                </TableCell>
-                <TableCell>
-                  Signed Up
+                  Created At
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {items.map((customer) => {
                 const isSelected = selected.includes(customer.id);
-                const createdAt = format(customer.createdAt, 'dd/MM/yyyy');
+                // const createdAt = format(customer.created_at, 'dd/MM/yyyy');
+                const createdAt = customer.created_at;
 
                 return (
                   <TableRow
@@ -101,7 +100,7 @@ export const CustomersTable = (props) => {
                         direction="row"
                         spacing={2}
                       >
-                        <Avatar src={customer.avatar}>
+                        <Avatar src={`https://storage.cloud.google.com/giovanni-storage/`+ encodeURI(customer.path)+`?authuser=2`}>
                           {getInitials(customer.name)}
                         </Avatar>
                         <Typography variant="subtitle2">
@@ -113,10 +112,7 @@ export const CustomersTable = (props) => {
                       {customer.email}
                     </TableCell>
                     <TableCell>
-                      {customer.address.city}, {customer.address.state}, {customer.address.country}
-                    </TableCell>
-                    <TableCell>
-                      {customer.phone}
+                      {customer.text}
                     </TableCell>
                     <TableCell>
                       {createdAt}
@@ -135,7 +131,7 @@ export const CustomersTable = (props) => {
         onRowsPerPageChange={onRowsPerPageChange}
         page={page}
         rowsPerPage={rowsPerPage}
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={[2, 4, 6]}
       />
     </Card>
   );

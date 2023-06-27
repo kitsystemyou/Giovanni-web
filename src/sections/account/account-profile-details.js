@@ -11,6 +11,7 @@ import {
   Unstable_Grid2 as Grid
 } from '@mui/material';
 import { useAuth } from 'src/hooks/use-auth';
+import { initUser } from 'src/contexts/auth-context';
 
 const states = [
   {
@@ -30,15 +31,6 @@ const states = [
     label: 'Los Angeles'
   }
 ];
-
-const initUser = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: '',
-  state: '',
-  country: ''
-}
 
 export const AccountProfileDetails = () => {
   const auth = useAuth();
