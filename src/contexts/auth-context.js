@@ -20,7 +20,8 @@ export const initUser = {
   email: "",
   phone: '',
   state: '',
-  country: ''
+  country: '',
+  id: ""
 }
 
 const handlers = {

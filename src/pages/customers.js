@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState, useEffect } from 'react';
 import Head from 'next/head';
 import { subDays, subHours } from 'date-fns';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
@@ -10,6 +10,11 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CustomersTable } from 'src/sections/customer/customers-table';
 import { CustomersSearch } from 'src/sections/customer/customers-search';
 import { applyPagination } from 'src/utils/apply-pagination';
+import { MuiFileInput } from 'mui-file-input';
+import uploadAPI from 'src/api/upload';
+import collectionAPI from 'src/api/collection';
+import { initUser } from 'src/contexts/auth-context';
+import { useAuth } from 'src/hooks/use-auth';
 
 const now = new Date();
 
@@ -56,104 +61,6 @@ const data = [
     name: 'Jie Yan Song',
     phone: '770-635-2682'
   },
-  {
-    id: '5e86809283e28b96d2d38537',
-    address: {
-      city: 'Madrid',
-      country: 'Spain',
-      name: 'Anika Visser',
-      street: '4158  Hedge Street'
-    },
-    avatar: '/assets/avatars/avatar-anika-visser.png',
-    createdAt: subDays(subHours(now, 11), 2).getTime(),
-    email: 'anika.visser@devias.io',
-    name: 'Anika Visser',
-    phone: '908-691-3242'
-  },
-  {
-    id: '5e86805e2bafd54f66cc95c3',
-    address: {
-      city: 'San Diego',
-      country: 'USA',
-      state: 'California',
-      street: '75247'
-    },
-    avatar: '/assets/avatars/avatar-miron-vitold.png',
-    createdAt: subDays(subHours(now, 7), 3).getTime(),
-    email: 'miron.vitold@devias.io',
-    name: 'Miron Vitold',
-    phone: '972-333-4106'
-  },
-  {
-    id: '5e887a1fbefd7938eea9c981',
-    address: {
-      city: 'Berkeley',
-      country: 'USA',
-      state: 'California',
-      street: '317 Angus Road'
-    },
-    avatar: '/assets/avatars/avatar-penjani-inyene.png',
-    createdAt: subDays(subHours(now, 5), 4).getTime(),
-    email: 'penjani.inyene@devias.io',
-    name: 'Penjani Inyene',
-    phone: '858-602-3409'
-  },
-  {
-    id: '5e887d0b3d090c1b8f162003',
-    address: {
-      city: 'Carson City',
-      country: 'USA',
-      state: 'Nevada',
-      street: '2188  Armbrester Drive'
-    },
-    avatar: '/assets/avatars/avatar-omar-darboe.png',
-    createdAt: subDays(subHours(now, 15), 4).getTime(),
-    email: 'omar.darobe@devias.io',
-    name: 'Omar Darobe',
-    phone: '415-907-2647'
-  },
-  {
-    id: '5e88792be2d4cfb4bf0971d9',
-    address: {
-      city: 'Los Angeles',
-      country: 'USA',
-      state: 'California',
-      street: '1798  Hickory Ridge Drive'
-    },
-    avatar: '/assets/avatars/avatar-siegbert-gottfried.png',
-    createdAt: subDays(subHours(now, 2), 5).getTime(),
-    email: 'siegbert.gottfried@devias.io',
-    name: 'Siegbert Gottfried',
-    phone: '702-661-1654'
-  },
-  {
-    id: '5e8877da9a65442b11551975',
-    address: {
-      city: 'Murray',
-      country: 'USA',
-      state: 'Utah',
-      street: '3934  Wildrose Lane'
-    },
-    avatar: '/assets/avatars/avatar-iulia-albu.png',
-    createdAt: subDays(subHours(now, 8), 6).getTime(),
-    email: 'iulia.albu@devias.io',
-    name: 'Iulia Albu',
-    phone: '313-812-8947'
-  },
-  {
-    id: '5e8680e60cba5019c5ca6fda',
-    address: {
-      city: 'Salt Lake City',
-      country: 'USA',
-      state: 'Utah',
-      street: '368 Lamberts Branch Road'
-    },
-    avatar: '/assets/avatars/avatar-nasimiyu-danai.png',
-    createdAt: subDays(subHours(now, 1), 9).getTime(),
-    email: 'nasimiyu.danai@devias.io',
-    name: 'Nasimiyu Danai',
-    phone: '801-301-7894'
-  }
 ];
 
 const useCustomers = (page, rowsPerPage) => {
@@ -176,10 +83,31 @@ const useCustomerIds = (customers) => {
 
 const Page = () => {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(2);
+  const [image,setImage] = useState();
   const customers = useCustomers(page, rowsPerPage);
   const customersIds = useCustomerIds(customers);
   const customersSelection = useSelection(customersIds);
+  const auth = useAuth();
+  // const [list_document,setList_document] = useState({});
+  const [sets, setSets] = useState([data]);
+
+  if (!auth.user) {
+    auth.user = initUser
+  }
+  const user_info = {
+    user_id: auth.user.id,
+    group_id: "default",
+  }
+
+  useEffect(() => {
+    collectionAPI.get_document(user_info).then(res => {
+      console.log(res.data);
+      setSets(res.data.result);
+    }).catch(err => {
+      console.log(err);
+    })
+  },[])
 
   const handlePageChange = useCallback(
     (event, value) => {
@@ -195,11 +123,24 @@ const Page = () => {
     []
   );
 
+  const handleSubmit = () => {
+    const form_data = new FormData()
+    if (image !== undefined) {
+      form_data.append("file", image, image.name);
+      uploadAPI.uplaod(form_data, user_info).then(res => {
+          console.log(res);
+        }).catch(err => {
+          console.log(err);
+        })
+    }
+    setImage(image[0])
+  }
+
   return (
     <>
       <Head>
         <title>
-          Customers | Devias Kit
+          Sets
         </title>
       </Head>
       <Box
@@ -218,13 +159,14 @@ const Page = () => {
             >
               <Stack spacing={1}>
                 <Typography variant="h4">
-                  Customers
+                  Sets
                 </Typography>
                 <Stack
                   alignItems="center"
                   direction="row"
                   spacing={1}
                 >
+                  <MuiFileInput value={image} onChange={e => setImage(e)} variant="outlined" accept="image/*" size="small"/>
                   <Button
                     color="inherit"
                     startIcon={(
@@ -232,38 +174,17 @@ const Page = () => {
                         <ArrowUpOnSquareIcon />
                       </SvgIcon>
                     )}
+                    onClick={handleSubmit}
                   >
-                    Import
-                  </Button>
-                  <Button
-                    color="inherit"
-                    startIcon={(
-                      <SvgIcon fontSize="small">
-                        <ArrowDownOnSquareIcon />
-                      </SvgIcon>
-                    )}
-                  >
-                    Export
+                     Upload
                   </Button>
                 </Stack>
               </Stack>
-              <div>
-                <Button
-                  startIcon={(
-                    <SvgIcon fontSize="small">
-                      <PlusIcon />
-                    </SvgIcon>
-                  )}
-                  variant="contained"
-                >
-                  Add
-                </Button>
-              </div>
             </Stack>
             <CustomersSearch />
             <CustomersTable
               count={data.length}
-              items={customers}
+              items={sets}
               onDeselectAll={customersSelection.handleDeselectAll}
               onDeselectOne={customersSelection.handleDeselectOne}
               onPageChange={handlePageChange}
