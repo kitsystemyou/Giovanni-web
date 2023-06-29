@@ -1,9 +1,13 @@
 steps:
+ - name: node:16.15.0
+   entrypoint: yarn
+   args: [ "run", "create-env" ]
+   env:
+     - 'GOOGLE_CLIENT_ID=${_GOOGLE_CLIENT_ID}'
+     - 'NEXT_PUBLIC_API_BASE_URL=${_NEXT_PUBLIC_API_BASE_URL}'
  # Docker Build
  - name: 'gcr.io/cloud-builders/docker'
    args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/giovanni-web/test', '.']
-   env:
-     - 'GOOGLE_CLIENT_ID=${_GOOGLE_CLIENT_ID}'
  # Docker Push
  - name: 'gcr.io/cloud-builders/docker'
    args: ['push', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/giovanni-web/test']

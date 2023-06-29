@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const uploadAPI = {
     async uplaod(file, user_info) {
-        const result = axios.post(`http://localhost:8000/upload/${user_info.user_id}/${user_info.group_id}`,file,
+        const result = axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/upload/${user_info.user_id}/${user_info.group_id}`,file,
         {
           headers: {
           'content-type': 'multipart/form-data',
