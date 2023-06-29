@@ -10,6 +10,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
+    "create-env": "printenv > .env",
     "lint": "next lint",
     "lint-fix": "next lint --fix"
   },
