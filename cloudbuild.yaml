@@ -2,6 +2,8 @@ steps:
  # Docker Build
  - name: 'gcr.io/cloud-builders/docker'
    args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/giovanni-web/test', '.']
+   env:
+     - 'GOOGLE_CLIENT_ID=${_GOOGLE_CLIENT_ID}'
  # Docker Push
  - name: 'gcr.io/cloud-builders/docker'
    args: ['push', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/giovanni-web/test']
