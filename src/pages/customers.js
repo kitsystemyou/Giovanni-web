@@ -83,7 +83,7 @@ const useCustomerIds = (customers) => {
 
 const Page = () => {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(2);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const [image,setImage] = useState();
   const customers = useCustomers(page, rowsPerPage);
   const customersIds = useCustomerIds(customers);
@@ -140,7 +140,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Sets
+          Image and Text
         </title>
       </Head>
       <Box
@@ -159,7 +159,7 @@ const Page = () => {
             >
               <Stack spacing={1}>
                 <Typography variant="h4">
-                  Sets
+                  Image and Text
                 </Typography>
                 <Stack
                   alignItems="center"
@@ -181,7 +181,7 @@ const Page = () => {
                 </Stack>
               </Stack>
             </Stack>
-            <CustomersSearch />
+            {/* <CustomersSearch /> */}
             <CustomersTable
               count={data.length}
               items={sets}
