@@ -17,6 +17,7 @@ import { Logo } from 'src/components/logo';
 import { Scrollbar } from 'src/components/scrollbar';
 import { items } from './config';
 import { SideNavItem } from './side-nav-item';
+import Link from '@mui/material/Link';
 
 export const SideNav = (props) => {
   const { open, onClose } = props;
@@ -71,7 +72,7 @@ export const SideNav = (props) => {
                 color="inherit"
                 variant="subtitle1"
               >
-                Devias
+                Minatosingull
               </Typography>
               <Typography
                 color="neutral.400"
@@ -134,45 +135,15 @@ export const SideNav = (props) => {
             color="neutral.100"
             variant="subtitle2"
           >
-            Need more features?
+            If you interested in this App?
           </Typography>
-          <Typography
-            color="neutral.500"
-            variant="body2"
-          >
-            Check out our Pro solution template.
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              mt: 2,
-              mx: 'auto',
-              width: '160px',
-              '& img': {
-                width: '100%'
-              }
-            }}
-          >
-            <img
-              alt="Go to pro"
-              src="/assets/devias-kit-pro.png"
-            />
-          </Box>
-          <Button
-            component="a"
-            endIcon={(
-              <SvgIcon fontSize="small">
-                <ArrowTopRightOnSquareIcon />
-              </SvgIcon>
-            )}
-            fullWidth
-            href="https://material-kit-pro-react.devias.io/"
-            sx={{ mt: 2 }}
+          <Link
+            href="https://github.com/kitsystemyou/Giovanni-web"
             target="_blank"
-            variant="contained"
+            rel="noopener"
           >
-            Pro Live Preview
-          </Button>
+            Check out my Repository
+          </Link>
         </Box>
       </Box>
     </Scrollbar>

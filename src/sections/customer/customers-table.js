@@ -4,6 +4,7 @@ import {
   Avatar,
   Box,
   Card,
+  CardMedia,
   Checkbox,
   Stack,
   Table,
@@ -15,7 +16,6 @@ import {
   Typography
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
-import { getInitials } from 'src/utils/get-initials';
 
 export const CustomersTable = (props) => {
   const {
@@ -57,10 +57,7 @@ export const CustomersTable = (props) => {
                   />
                 </TableCell>
                 <TableCell>
-                  Name
-                </TableCell>
-                <TableCell>
-                  Email
+                  Image
                 </TableCell>
                 <TableCell>
                   Texts
@@ -68,18 +65,21 @@ export const CustomersTable = (props) => {
                 <TableCell>
                   Created At
                 </TableCell>
+                <TableCell>
+                  Updated At
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {items.map((customer) => {
-                const isSelected = selected.includes(customer.id);
+              {items.map((setdata) => {
+                const isSelected = selected.includes(setdata.id);
                 // const createdAt = format(customer.created_at, 'dd/MM/yyyy');
-                const createdAt = customer.created_at;
-
+                const createdAt = setdata.created_at;
+                const updatedAt = setdata.updated_at;
                 return (
                   <TableRow
                     hover
-                    key={customer.id}
+                    key={setdata.id}
                     selected={isSelected}
                   >
                     <TableCell padding="checkbox">
@@ -87,9 +87,9 @@ export const CustomersTable = (props) => {
                         checked={isSelected}
                         onChange={(event) => {
                           if (event.target.checked) {
-                            onSelectOne?.(customer.id);
+                            onSelectOne?.(setdata.id);
                           } else {
-                            onDeselectOne?.(customer.id);
+                            onDeselectOne?.(setdata.id);
                           }
                         }}
                       />
@@ -97,25 +97,34 @@ export const CustomersTable = (props) => {
                     <TableCell>
                       <Stack
                         alignItems="center"
-                        direction="row"
+                        direction="column"
                         spacing={2}
                       >
-                        <Avatar src={`https://storage.cloud.google.com/giovanni-storage/`+ encodeURI(customer.path)+`?authuser=2`}>
-                          {getInitials(customer.name)}
-                        </Avatar>
-                        <Typography variant="subtitle2">
-                          {customer.name}
+                        {/* <Card>
+                        <CardMedia
+                          src={`https://storage.cloud.google.com/giovanni-storage/`+ encodeURI(setdata.path)+`?authuser=2`}
+                          title={setdata.title}
+                          sx={{ height: 100, width: 100 }}
+                        >
+                        </CardMedia>
+                        </Card> */}
+                        <Typography variant="subtitle2" align="center">
+                          {setdata.title}
                         </Typography>
+                        <img
+                          src={`https://storage.cloud.google.com/giovanni-storage/`+ encodeURI(setdata.path)+`?authuser=2`}
+                          style={{width: 100}}
+                        />
                       </Stack>
                     </TableCell>
                     <TableCell>
-                      {customer.email}
+                      {setdata.text}
                     </TableCell>
                     <TableCell>
-                      {customer.text}
+                      {createdAt ? createdAt.split(".")[0] : ""}
                     </TableCell>
                     <TableCell>
-                      {createdAt}
+                      {updatedAt ? updatedAt.split(".")[0] : ""}
                     </TableCell>
                   </TableRow>
                 );
@@ -131,7 +140,7 @@ export const CustomersTable = (props) => {
         onRowsPerPageChange={onRowsPerPageChange}
         page={page}
         rowsPerPage={rowsPerPage}
-        rowsPerPageOptions={[2, 4, 6]}
+        rowsPerPageOptions={[5, 10, 15]}
       />
     </Card>
   );
