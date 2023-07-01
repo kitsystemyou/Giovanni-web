@@ -127,32 +127,6 @@ export const AccountProfileDetails = () => {
               >
                 <TextField
                   fullWidth
-                  label="Phone Number"
-                  name="phone"
-                  onChange={handleChange}
-                  type="number"
-                  value={values.phone}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  label="Country"
-                  name="country"
-                  onChange={handleChange}
-                  required
-                  value={values.country}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
                   label="Select State"
                   name="state"
                   onChange={handleChange}
@@ -174,12 +148,12 @@ export const AccountProfileDetails = () => {
             </Grid>
           </Box>
         </CardContent>
-        <Divider />
-        <CardActions sx={{ justifyContent: 'flex-end' }}>
+        {/* <Divider /> */}
+        {/* <CardActions sx={{ justifyContent: 'flex-end' }}>
           <Button variant="contained">
             Save details
           </Button>
-        </CardActions>
+        </CardActions> */}
       </Card>
     </form>
   );
