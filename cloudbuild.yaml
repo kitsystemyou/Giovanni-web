@@ -3,7 +3,7 @@ steps:
    entrypoint: yarn
    args: [ "run", "create-env" ]
    env:
-     - 'GOOGLE_CLIENT_ID=${_GOOGLE_CLIENT_ID}'
+     - 'NEXT_PUBLIC_GOOGLE_CLIENT_ID=${_NEXT_PUBLIC_GOOGLE_CLIENT_ID}'
      - 'NEXT_PUBLIC_API_BASE_URL=${_NEXT_PUBLIC_API_BASE_URL}'
  # Docker Build
  - name: 'gcr.io/cloud-builders/docker'
