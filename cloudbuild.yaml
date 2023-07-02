@@ -7,7 +7,7 @@ steps:
      - 'NEXT_PUBLIC_API_BASE_URL=${_NEXT_PUBLIC_API_BASE_URL}'
  # Docker Build
  - name: 'gcr.io/cloud-builders/docker'
-   args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/giovanni-web/test', '.']
+   args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/giovanni-web/$TAG_NAME', '.']
  # Docker Push
  - name: 'gcr.io/cloud-builders/docker'
-   args: ['push', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/giovanni-web/test']
+   args: ['push', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/giovanni-web/$TAG_NAME']
