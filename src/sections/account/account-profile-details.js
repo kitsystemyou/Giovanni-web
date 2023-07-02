@@ -15,21 +15,17 @@ import { initUser } from 'src/contexts/auth-context';
 
 const states = [
   {
-    value: 'alabama',
-    label: 'Alabama'
+    value: 'illumination stars',
+    label: 'Illumination Stars'
   },
   {
-    value: 'new-york',
-    label: 'New York'
+    value: 'l\'antica',
+    label: 'L\'Antica'
   },
   {
-    value: 'san-francisco',
-    label: 'San Francisco'
+    value: 'climax girls',
+    label: 'Climax Girls'
   },
-  {
-    value: 'los-angeles',
-    label: 'Los Angeles'
-  }
 ];
 
 export const AccountProfileDetails = () => {
@@ -127,7 +123,7 @@ export const AccountProfileDetails = () => {
               >
                 <TextField
                   fullWidth
-                  label="Select State"
+                  label="Select Region"
                   name="state"
                   onChange={handleChange}
                   required

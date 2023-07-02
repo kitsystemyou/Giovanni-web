@@ -16,6 +16,7 @@ import {
   Typography
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
+import { Image } from 'react-bootstrap';
 
 export const CustomersTable = (props) => {
   const {
@@ -111,7 +112,7 @@ export const CustomersTable = (props) => {
                         <Typography variant="subtitle2" align="center">
                           {setdata.title}
                         </Typography>
-                        <img
+                        <Image
                           src={`https://storage.cloud.google.com/giovanni-storage/`+ encodeURI(setdata.path)+`?authuser=2`}
                           style={{width: 100}}
                         />
