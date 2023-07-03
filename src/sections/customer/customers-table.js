@@ -101,14 +101,6 @@ export const CustomersTable = (props) => {
                         direction="column"
                         spacing={2}
                       >
-                        {/* <Card>
-                        <CardMedia
-                          src={`https://storage.cloud.google.com/giovanni-storage/`+ encodeURI(setdata.path)+`?authuser=2`}
-                          title={setdata.title}
-                          sx={{ height: 100, width: 100 }}
-                        >
-                        </CardMedia>
-                        </Card> */}
                         <Typography variant="subtitle2" align="center">
                           {setdata.title}
                         </Typography>
