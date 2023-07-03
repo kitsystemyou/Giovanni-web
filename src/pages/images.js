@@ -107,6 +107,16 @@ const Page = () => {
     }).catch(err => {
       console.log(err);
     })
+
+    const interval = setInterval(() => {
+      collectionAPI.get_document(user_info).then(res => {
+        console.log(res.data);
+        setSets(res.data.result);
+      }).catch(err => {
+        console.log(err);
+      })
+    }, 5000);
+    return () => clearInterval(interval);
   },[])
 
   const handlePageChange = useCallback(
