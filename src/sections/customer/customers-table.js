@@ -17,6 +17,7 @@ import {
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
 import { Image } from 'react-bootstrap';
+import useWindowSize from "src/hooks/useWindowSize";
 
 export const CustomersTable = (props) => {
   const {
@@ -37,6 +38,9 @@ export const CustomersTable = (props) => {
   const selectedAll = (items.length > 0) && (selected.length === items.length);
   console.log("items", items)
 
+  // get windwo size
+  const [width, height] = useWindowSize();
+
   return (
     <Card>
       <Scrollbar>
@@ -44,7 +48,7 @@ export const CustomersTable = (props) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell padding="checkbox">
+                {/* <TableCell padding="checkbox">
                   <Checkbox
                     checked={selectedAll}
                     indeterminate={selectedSome}
@@ -56,7 +60,7 @@ export const CustomersTable = (props) => {
                       }
                     }}
                   />
-                </TableCell>
+                </TableCell> */}
                 <TableCell>
                   Image
                 </TableCell>
@@ -83,7 +87,7 @@ export const CustomersTable = (props) => {
                     key={setdata.id}
                     selected={isSelected}
                   >
-                    <TableCell padding="checkbox">
+                    {/* <TableCell padding="checkbox">
                       <Checkbox
                         checked={isSelected}
                         onChange={(event) => {
@@ -94,7 +98,7 @@ export const CustomersTable = (props) => {
                           }
                         }}
                       />
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell>
                       <Stack
                         alignItems="center"
@@ -105,8 +109,8 @@ export const CustomersTable = (props) => {
                           {setdata.title}
                         </Typography>
                         <Image
-                          src={`https://storage.cloud.google.com/giovanni-storage/`+ encodeURI(setdata.path)+`?authuser=2`}
-                          style={{width: 100}}
+                          src={`https://storage.cloud.google.com/giovanni-storage/`+ encodeURI(setdata.path)}
+                          style={{width: width/3}}
                         />
                       </Stack>
                     </TableCell>
