@@ -16,8 +16,7 @@ import {
   Typography
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
-import { Image } from 'react-bootstrap';
-import useWindowSize from "src/hooks/useWindowSize";
+import TableContents from 'src/sections/customer/table-contents';
 
 export const CustomersTable = (props) => {
   const {
@@ -31,15 +30,9 @@ export const CustomersTable = (props) => {
     onSelectOne,
     page = 0,
     rowsPerPage = 0,
-    selected = []
+    selected = [],
+    handleTesxtUpdate,
   } = props;
-
-  const selectedSome = (selected.length > 0) && (selected.length < items.length);
-  const selectedAll = (items.length > 0) && (selected.length === items.length);
-  console.log("items", items)
-
-  // get windwo size
-  const [width, height] = useWindowSize();
 
   return (
     <Card>
@@ -48,19 +41,6 @@ export const CustomersTable = (props) => {
           <Table>
             <TableHead>
               <TableRow>
-                {/* <TableCell padding="checkbox">
-                  <Checkbox
-                    checked={selectedAll}
-                    indeterminate={selectedSome}
-                    onChange={(event) => {
-                      if (event.target.checked) {
-                        onSelectAll?.();
-                      } else {
-                        onDeselectAll?.();
-                      }
-                    }}
-                  />
-                </TableCell> */}
                 <TableCell>
                   Image
                 </TableCell>
@@ -76,56 +56,13 @@ export const CustomersTable = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {items.map((setdata) => {
-                const isSelected = selected.includes(setdata.id);
-                // const createdAt = format(customer.created_at, 'dd/MM/yyyy');
-                const createdAt = setdata.created_at;
-                const updatedAt = setdata.updated_at;
-                return (
-                  <TableRow
-                    hover
-                    key={setdata.id}
-                    selected={isSelected}
-                  >
-                    {/* <TableCell padding="checkbox">
-                      <Checkbox
-                        checked={isSelected}
-                        onChange={(event) => {
-                          if (event.target.checked) {
-                            onSelectOne?.(setdata.id);
-                          } else {
-                            onDeselectOne?.(setdata.id);
-                          }
-                        }}
-                      />
-                    </TableCell> */}
-                    <TableCell>
-                      <Stack
-                        alignItems="center"
-                        direction="column"
-                        spacing={2}
-                      >
-                        <Typography variant="subtitle2" align="center">
-                          {setdata.title}
-                        </Typography>
-                        <Image
-                          src={`https://storage.cloud.google.com/giovanni-storage/`+ encodeURI(setdata.path)}
-                          style={{width: width/3}}
-                        />
-                      </Stack>
-                    </TableCell>
-                    <TableCell>
-                      {setdata.text}
-                    </TableCell>
-                    <TableCell>
-                      {createdAt ? createdAt.split(".")[0] : ""}
-                    </TableCell>
-                    <TableCell>
-                      {updatedAt ? updatedAt.split(".")[0] : ""}
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
+                {items.map((setdata) => (
+                  <TableContents
+                  setdata={setdata}
+                  key={setdata.id}
+                  handleTesxtUpdate={handleTesxtUpdate}
+                  />
+                ))}
             </TableBody>
           </Table>
         </Box>
@@ -154,5 +91,6 @@ CustomersTable.propTypes = {
   onSelectOne: PropTypes.func,
   page: PropTypes.number,
   rowsPerPage: PropTypes.number,
-  selected: PropTypes.array
+  selected: PropTypes.array,
+  handleTesxtUpdate: PropTypes.func,
 };

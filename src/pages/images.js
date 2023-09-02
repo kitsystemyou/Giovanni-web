@@ -146,6 +146,13 @@ const Page = () => {
     setImage(image[0])
   }
 
+  const handleTesxtUpdate = (text, set_id, name) => {
+    console.log(text, set_id, name)
+    collectionAPI.update_document(user_info, text, set_id, name).then(res => {
+      console.log(res.data);
+    }
+  )}
+
   return (
     <>
       <Head>
@@ -204,6 +211,7 @@ const Page = () => {
               page={page}
               rowsPerPage={rowsPerPage}
               selected={customersSelection.selected}
+              handleTesxtUpdate={handleTesxtUpdate}
             />
           </Stack>
         </Container>
