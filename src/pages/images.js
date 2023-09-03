@@ -33,34 +33,6 @@ const data = [
     name: 'Carson Darrin',
     phone: '304-428-3097'
   },
-  {
-    id: '5e887b209c28ac3dd97f6db5',
-    address: {
-      city: 'Atlanta',
-      country: 'USA',
-      state: 'Georgia',
-      street: '1865  Pleasant Hill Road'
-    },
-    avatar: '/assets/avatars/avatar-fran-perez.png',
-    createdAt: subDays(subHours(now, 1), 2).getTime(),
-    email: 'fran.perez@devias.io',
-    name: 'Fran Perez',
-    phone: '712-351-5711'
-  },
-  {
-    id: '5e887b7602bdbc4dbb234b27',
-    address: {
-      city: 'North Canton',
-      country: 'USA',
-      state: 'Ohio',
-      street: '4894  Lakeland Park Drive'
-    },
-    avatar: '/assets/avatars/avatar-jie-yan-song.png',
-    createdAt: subDays(subHours(now, 4), 2).getTime(),
-    email: 'jie.yan.song@devias.io',
-    name: 'Jie Yan Song',
-    phone: '770-635-2682'
-  },
 ];
 
 const useCustomers = (page, rowsPerPage) => {
@@ -135,7 +107,8 @@ const Page = () => {
 
   const handleSubmit = () => {
     const form_data = new FormData()
-    if (image !== undefined) {
+    // ファイル選択されていなければアラートだけ出す
+    if (image !== undefined && image !== null) {
       form_data.append("file", image, image.name);
       uploadAPI.uplaod(form_data, user_info).then(res => {
           console.log(res);
@@ -159,7 +132,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Image and Text
+          Giovanni | Image and Text
         </title>
       </Head>
       <Box

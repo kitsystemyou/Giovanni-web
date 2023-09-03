@@ -13,11 +13,11 @@ import {
   Typography,
   useMediaQuery
 } from '@mui/material';
-import { Logo } from 'src/components/logo';
 import { Scrollbar } from 'src/components/scrollbar';
 import { items } from './config';
 import { SideNavItem } from './side-nav-item';
 import Link from '@mui/material/Link';
+import { Image } from 'react-bootstrap';
 
 export const SideNav = (props) => {
   const { open, onClose } = props;
@@ -44,16 +44,17 @@ export const SideNav = (props) => {
         }}
       >
         <Box sx={{ p: 3 }}>
+          <h1>Giovanni</h1>
           <Box
             component={NextLink}
-            href="/"
+            href="/images"
             sx={{
               display: 'inline-flex',
-              height: 32,
-              width: 32
+              height: 232, // (280 - 2 * 24)
+              width: 64
             }}
           >
-            <Logo />
+            <Image src="/assets/logos/logo.jpg" alt="Logo"/>
           </Box>
           <Box
             sx={{
@@ -78,7 +79,7 @@ export const SideNav = (props) => {
                 color="neutral.400"
                 variant="body2"
               >
-                Production
+                Open Beta
               </Typography>
             </div>
             <SvgIcon
