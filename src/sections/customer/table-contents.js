@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import { Image } from 'react-bootstrap';
 import { useWindowSize } from 'src/hooks/useWindowSize';
 import PropTypes from 'prop-types';
+import { Box } from '@mui/system';
+import { StayPrimaryLandscape } from '@mui/icons-material';
 
 const TableContents = (props) => {
     const setdata = props.setdata;
@@ -31,14 +33,14 @@ return (
             direction="column"
             spacing={2}
           >
-            <Typography variant="subtitle2" align="center">
-              {setdata.title}
-            </Typography>
             <Image
               key={setdata.id}
               src={`https://storage.cloud.google.com/giovanni-storage/`+ encodeURI(setdata.path)}
               style={{width: width/4}}
             />
+            <Typography variant="subtitle2" align="center">
+              {setdata.title}
+            </Typography>
           </Stack>
         </TableCell>
         <TableCell

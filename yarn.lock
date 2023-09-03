@@ -2112,12 +2112,12 @@ ms@2.1.2, ms@^2.1.1:
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-mui-file-input@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/mui-file-input/-/mui-file-input-2.0.0.tgz#7928f078c67d3dff199e5089301395e086a633d3"
-  integrity sha512-swlaQ2jZ2IvoNhasF465AWZHEEqqG+z32yL4TxoEqpPb6OW8t3Oq9d/+guQRp1UO+LjQjwgzvU3861QeXCz4Mg==
+mui-file-input@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/mui-file-input/-/mui-file-input-3.0.0.tgz#c4a96273071b7c2ec0808f873822747335396b65"
+  integrity sha512-Nin+6Xq+X7MW3iNzYuTExx552uWrnXtF30ZzUig/zJQP5vVRB7yj4iro8ETKeQ5nrYM2zdvlHyPIoD2cAsGsmQ==
   dependencies:
-    pretty-bytes "^6.0.0"
+    pretty-bytes "^6.1.1"
 
 multipipe@^1.0.2:
   version "1.0.2"
@@ -2348,10 +2348,10 @@ prelude-ls@^1.2.1:
   resolved "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-pretty-bytes@^6.0.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-6.1.0.tgz#1d1cc9aae1939012c74180b679da6684616bf804"
-  integrity sha512-Rk753HI8f4uivXi4ZCIYdhmG1V+WKzvRMg/X+M42a6t7D07RcmopXJMDNk6N++7Bl75URRGsb40ruvg7Hcp2wQ==
+pretty-bytes@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-6.1.1.tgz#38cd6bb46f47afbf667c202cfc754bffd2016a3b"
+  integrity sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==
 
 process-nextick-args@~2.0.0:
   version "2.0.1"

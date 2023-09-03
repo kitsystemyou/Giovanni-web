@@ -84,7 +84,7 @@ const useCustomerIds = (customers) => {
 const Page = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [image,setImage] = useState();
+  const [image,setImage] = useState(null);
   const customers = useCustomers(page, rowsPerPage);
   const customersIds = useCustomerIds(customers);
   const customersSelection = useSelection(customersIds);
@@ -142,8 +142,10 @@ const Page = () => {
         }).catch(err => {
           console.log(err);
         })
+        setImage(image[0])
+        return
     }
-    setImage(image[0])
+    alert("select upload file")
   }
 
   const handleTesxtUpdate = (text, set_id, name) => {
@@ -183,7 +185,14 @@ const Page = () => {
                   direction="row"
                   spacing={1}
                 >
-                  <MuiFileInput value={image} onChange={e => setImage(e)} variant="outlined" accept="image/*" size="small"/>
+                  <MuiFileInput
+                    placeholder="select file"
+                    value={image}
+                    onChange={e => setImage(e)}
+                    variant="outlined"
+                    accept="image/*"
+                    // size="small"
+                    />
                   <Button
                     color="inherit"
                     startIcon={(

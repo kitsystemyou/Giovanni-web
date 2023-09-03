@@ -58,11 +58,11 @@ export const CustomersTable = (props) => {
             <TableBody>
                 {items.map((setdata) => (
                   <TableContents
-                  setdata={setdata}
-                  key={setdata.id}
-                  handleTesxtUpdate={handleTesxtUpdate}
+                    setdata={setdata}
+                    key={setdata.id}
+                    handleTesxtUpdate={handleTesxtUpdate}
                   />
-                ))}
+                  ))}
             </TableBody>
           </Table>
         </Box>
