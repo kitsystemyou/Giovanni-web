@@ -9,7 +9,7 @@ const Page = () => {
           <>
             <Head>
               <title>
-                Account | Devias Kit
+                Account | Giovanni
               </title>
             </Head>
             <Box
